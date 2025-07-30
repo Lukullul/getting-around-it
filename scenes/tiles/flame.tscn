@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bavf5h6oiha8h"]
+
+[ext_resource type="PackedScene" uid="uid://de6osmjxonvlb" path="res://scenes/tiles/blank.tscn" id="1_4p31g"]
+
+[node name="Flame" instance=ExtResource("1_4p31g")]
