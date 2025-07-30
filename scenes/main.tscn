@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ckll30coomscy"]
+[gd_scene load_steps=23 format=4 uid="uid://ckll30coomscy"]
 
 [ext_resource type="Script" uid="uid://beq45rcnitrlm" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://3p7lcd1g0vy" path="res://scenes/background/background_tile.tscn" id="2_jkv2x"]
@@ -13,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://gdlxfbrimas8" path="res://assets/wood.tscn" id="11_y6deb"]
 [ext_resource type="PackedScene" uid="uid://bavf5h6oiha8h" path="res://scenes/tiles/flame.tscn" id="12_og1vs"]
 [ext_resource type="PackedScene" uid="uid://d0b60mijqawqy" path="res://scenes/player.tscn" id="13_2wyq8"]
-[ext_resource type="PackedScene" uid="uid://byjbfcfesvar1" path="res://scenes/killzone.tscn" id="14_vxglm"]
+[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="14_vxglm"]
 [ext_resource type="PackedScene" uid="uid://dkrnqsix11mfa" path="res://scenes/dragon.tscn" id="15_jbj1t"]
+[ext_resource type="Script" uid="uid://ca5v147o1er4a" path="res://scripts/character_body_2d.gd" id="16_jbj1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(128, 704)
@@ -34,6 +35,9 @@ tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetScenesCollectionSource_qmy6f")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3p2gp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muem4"]
+size = Vector2(128, 128)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_a8y0u")
@@ -117,6 +121,7 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("13_2wyq8")]
 position = Vector2(672, 512)
+fly = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-80, -0.00012207)
@@ -132,6 +137,18 @@ shape = SubResource("WorldBoundaryShape2D_3p2gp")
 
 [node name="Dragon" parent="." instance=ExtResource("15_jbj1t")]
 position = Vector2(256, 128)
+
+[node name="PlayerOld" type="CharacterBody2D" parent="."]
+visible = false
+position = Vector2(640, 512)
+script = ExtResource("16_jbj1t")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOld"]
+shape = SubResource("RectangleShape2D_muem4")
+
+[node name="BackgroundTile" parent="PlayerOld" instance=ExtResource("2_jkv2x")]
 
 [connection signal="body_entered" from="Tower/AreaToggle" to="." method="_on_area_toggle_body_entered"]
 [connection signal="body_exited" from="Tower/AreaToggle" to="." method="_on_area_toggle_body_exited"]

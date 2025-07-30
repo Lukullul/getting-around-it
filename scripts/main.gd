@@ -50,18 +50,18 @@ BODY toggle
 """
 func _on_area_toggle_body_entered(body: Node2D) -> void:
 	body.show()
+
 func _on_area_toggle_body_exited(body: Node2D) -> void:
 	body.hide()
 
 """
 BODY mirror
 """
-
 func _on_mirror_body_entered(body: Node2D) -> void:
-	#var start_vector = body.position - Vector2(2 * Global.block_size, 0)
-	#if(body is ):
-		#var sprite = MirrorSprite.new(start_vector, area.get_node("BackgroundTile"))
-		#add_child(sprite)
+	var start_vector = body.position - Vector2(2 * Global.block_size, 0)
+	if(body is Blank):
+		var sprite = MirrorSprite.new(start_vector, body.get_node("Sprite2D"))
+		add_child(sprite)
 	pass
 
 func _on_area_mirror_body_exited(body: Node2D) -> void:
