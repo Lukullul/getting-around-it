@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cptuso84le575"]
+
+[ext_resource type="Script" uid="uid://ca5v147o1er4a" path="res://scripts/character_body_2d.gd" id="1_rrsd4"]
+[ext_resource type="PackedScene" uid="uid://3p7lcd1g0vy" path="res://scenes/background/background_tile.tscn" id="2_mfhqv"]
+[ext_resource type="Script" uid="uid://cclcrs4evwo1q" path="res://scripts/platform.gd" id="3_d2aec"]
+[ext_resource type="Texture2D" uid="uid://ctlohe0eaqxhv" path="res://assets/bricks.png" id="4_bqg2o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cm0pq"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhr70"]
+size = Vector2(256, 256)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="PlayerOld" type="CharacterBody2D" parent="."]
+visible = false
+position = Vector2(640, 512)
+script = ExtResource("1_rrsd4")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOld"]
+shape = SubResource("RectangleShape2D_cm0pq")
+
+[node name="BackgroundTile" parent="PlayerOld" instance=ExtResource("2_mfhqv")]
+
+[node name="PlatformOld" type="Area2D" parent="."]
+visible = false
+position = Vector2(1408, 384)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_d2aec")
+metadata/_edit_group_ = true
+
+[node name="BackgroundTile" parent="PlatformOld" instance=ExtResource("2_mfhqv")]
+texture = ExtResource("4_bqg2o")
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformOld"]
+shape = SubResource("RectangleShape2D_lhr70")
