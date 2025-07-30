@@ -45,24 +45,24 @@ func _scroll_background():
 #func _on_mirrow_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	#pass # Replace with function body.
 
+"""
+BODY toggle
+"""
+func _on_area_toggle_body_entered(body: Node2D) -> void:
+	body.show()
+func _on_area_toggle_body_exited(body: Node2D) -> void:
+	body.hide()
 
 """
 BODY mirror
 """
 
 func _on_mirror_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	#var start_vector = body.position - Vector2(2 * Global.block_size, 0)
+	#if(body is ):
+		#var sprite = MirrorSprite.new(start_vector, area.get_node("BackgroundTile"))
+		#add_child(sprite)
+	pass
 
 func _on_area_mirror_body_exited(body: Node2D) -> void:
 	pass # Replace with function body.
-
-"""
-BODY toggle
-"""
-
-func _on_area_toggle_body_entered(body: Node2D) -> void:
-	body.show()
-
-
-func _on_area_toggle_body_exited(body: Node2D) -> void:
-	body.hide()

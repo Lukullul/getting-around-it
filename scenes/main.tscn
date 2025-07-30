@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://gdlxfbrimas8" path="res://assets/wood.tscn" id="11_y6deb"]
 [ext_resource type="PackedScene" uid="uid://bavf5h6oiha8h" path="res://scenes/tiles/flame.tscn" id="12_og1vs"]
 [ext_resource type="PackedScene" uid="uid://d0b60mijqawqy" path="res://scenes/player.tscn" id="13_2wyq8"]
-[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="14_vxglm"]
+[ext_resource type="PackedScene" uid="uid://byjbfcfesvar1" path="res://scenes/killzone.tscn" id="14_vxglm"]
 [ext_resource type="PackedScene" uid="uid://dkrnqsix11mfa" path="res://scenes/dragon.tscn" id="15_jbj1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
