@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckll30coomscy"]
+[gd_scene load_steps=16 format=3 uid="uid://ckll30coomscy"]
 
 [ext_resource type="Script" uid="uid://beq45rcnitrlm" path="res://scenes/main.gd" id="1_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://3p7lcd1g0vy" path="res://scenes/background_tile.tscn" id="2_jlsqs"]
@@ -15,6 +15,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(192, 704)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp0k4"]
+size = Vector2(32, 704)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cm0pq"]
 size = Vector2(128, 128)
 
@@ -25,6 +28,7 @@ size = Vector2(256, 256)
 script = ExtResource("1_nxtc6")
 
 [node name="Sky" type="Parallax2D" parent="."]
+z_index = -3
 scroll_scale = Vector2(1, 0)
 scroll_offset = Vector2(320, 380)
 repeat_size = Vector2(128, 0)
@@ -49,6 +53,7 @@ texture = ExtResource("5_wp0k4")
 region_rect = Rect2(0, 0, 256, 16)
 
 [node name="Sun" type="Parallax2D" parent="."]
+z_index = -2
 scale = Vector2(8, 8)
 scroll_scale = Vector2(1, 0)
 repeat_size = Vector2(320, 0)
@@ -59,6 +64,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_jlsqs")
 
 [node name="Tower" parent="." instance=ExtResource("2_jlsqs")]
+z_index = -1
 position = Vector2(640, 512)
 scale = Vector2(4, 4)
 texture = ExtResource("6_bjd11")
@@ -78,10 +84,20 @@ texture = ExtResource("8_q8u5g")
 flip_h = true
 region_rect = Rect2(0, 0, 128, 1408)
 
-[node name="Area2D" type="Area2D" parent="Tower"]
+[node name="AreaToggle" type="Area2D" parent="Tower"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/AreaToggle"]
 shape = SubResource("RectangleShape2D_q8u5g")
+
+[node name="AreaMirrow" type="Area2D" parent="Tower"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/AreaMirrow"]
+position = Vector2(112, 0)
+shape = SubResource("RectangleShape2D_wp0k4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Tower/AreaMirrow"]
+position = Vector2(-112, 0)
+shape = SubResource("RectangleShape2D_wp0k4")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(640, 512)
@@ -96,7 +112,7 @@ shape = SubResource("RectangleShape2D_cm0pq")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Platform" type="Area2D" parent="."]
-position = Vector2(1216, 352)
+position = Vector2(1280, 352)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("10_wp0k4")
 
@@ -107,5 +123,7 @@ region_rect = Rect2(0, 0, 32, 32)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
 shape = SubResource("RectangleShape2D_lhr70")
 
-[connection signal="area_shape_entered" from="Tower/Area2D" to="." method="_on_area_2d_area_shape_entered"]
-[connection signal="area_shape_exited" from="Tower/Area2D" to="." method="_on_area_2d_area_shape_exited"]
+[connection signal="area_shape_entered" from="Tower/AreaToggle" to="." method="_on_toggle_area_shape_entered"]
+[connection signal="area_shape_exited" from="Tower/AreaToggle" to="." method="_on_toggle_area_shape_exited"]
+[connection signal="area_shape_entered" from="Tower/AreaMirrow" to="." method="_on_mirrow_area_shape_entered"]
+[connection signal="area_shape_exited" from="Tower/AreaMirrow" to="." method="_on_mirrow_area_shape_exited"]
