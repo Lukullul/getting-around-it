@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckll30coomscy"]
+[gd_scene load_steps=11 format=3 uid="uid://ckll30coomscy"]
 
 [ext_resource type="Script" uid="uid://beq45rcnitrlm" path="res://scenes/main.gd" id="1_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://3p7lcd1g0vy" path="res://scenes/background_tile.tscn" id="2_jlsqs"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dd2ng6gyk0jch" path="res://assets/background/background_sky3.png" id="4_lhr70"]
 [ext_resource type="Texture2D" uid="uid://cp5yqfqm37128" path="res://assets/background/background_sky2.png" id="5_wp0k4"]
 [ext_resource type="Texture2D" uid="uid://d1pl3as6q873k" path="res://assets/background/background_wall.png" id="6_bjd11"]
+[ext_resource type="Texture2D" uid="uid://qr2m5awgdply" path="res://assets/background/sun.png" id="6_jlsqs"]
 [ext_resource type="Script" uid="uid://ca5v147o1er4a" path="res://scenes/character_body_2d.gd" id="7_qmy6f"]
+[ext_resource type="Texture2D" uid="uid://chwwvbjwk3qyo" path="res://assets/background/tower_shadow.png" id="8_q8u5g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cm0pq"]
 size = Vector2(128, 128)
@@ -15,76 +17,58 @@ size = Vector2(128, 128)
 script = ExtResource("1_nxtc6")
 
 [node name="Sky" type="Parallax2D" parent="."]
-scroll_offset = Vector2(320, 512)
+scroll_scale = Vector2(1, 0)
+scroll_offset = Vector2(320, 380)
 repeat_size = Vector2(128, 0)
 
-[node name="Pivot" type="Node2D" parent="Sky"]
+[node name="Background" type="Node2D" parent="Sky"]
 modulate = Color(0.710448, 0.819674, 1, 1)
 position = Vector2(704, -128)
 metadata/_edit_group_ = true
 
-[node name="BackgroundUp" parent="Sky/Pivot" instance=ExtResource("2_jlsqs")]
+[node name="BackgroundUp" parent="Sky/Background" instance=ExtResource("2_jlsqs")]
 texture = ExtResource("3_q8u5g")
 region_rect = Rect2(0, 0, 256, 112)
 
-[node name="BackgroundDown" parent="Sky/Pivot" instance=ExtResource("2_jlsqs")]
+[node name="BackgroundDown" parent="Sky/Background" instance=ExtResource("2_jlsqs")]
 position = Vector2(0, 640)
 texture = ExtResource("4_lhr70")
 region_rect = Rect2(0, 0, 256, 32)
 
-[node name="BackgroundTransition" parent="Sky/Pivot" instance=ExtResource("2_jlsqs")]
+[node name="BackgroundTransition" parent="Sky/Background" instance=ExtResource("2_jlsqs")]
 position = Vector2(0, 512)
 texture = ExtResource("5_wp0k4")
 region_rect = Rect2(0, 0, 256, 16)
 
+[node name="Sun" type="Parallax2D" parent="."]
+scale = Vector2(8, 8)
+scroll_scale = Vector2(1, 0)
+repeat_size = Vector2(320, 0)
+
+[node name="Sprite2D" parent="Sun" instance=ExtResource("2_jlsqs")]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("6_jlsqs")
+
 [node name="Tower" parent="." instance=ExtResource("2_jlsqs")]
 position = Vector2(640, 512)
+scale = Vector2(4, 4)
 texture = ExtResource("6_bjd11")
-region_rect = Rect2(0, 0, 96, 352)
+region_rect = Rect2(0, 0, 192, 704)
+metadata/_edit_group_ = true
 
-[node name="Pivot" type="Node2D" parent="Tower"]
+[node name="ShadowLeft" parent="Tower" instance=ExtResource("2_jlsqs")]
+position = Vector2(-48, 3.8147e-06)
+scale = Vector2(0.75, 0.5)
+texture = ExtResource("8_q8u5g")
+region_rect = Rect2(0, 0, 128, 1408)
 
-[node name="ShadowL1" type="ColorRect" parent="Tower/Pivot"]
-offset_left = -48.0
-offset_top = -176.0
-offset_right = -44.0
-offset_bottom = 176.0
-color = Color(0, 0, 0, 0.231373)
-
-[node name="ShadowL2" type="ColorRect" parent="Tower/Pivot"]
-offset_left = -48.0
-offset_top = -176.0
-offset_right = -40.0
-offset_bottom = 176.0
-color = Color(0, 0, 0, 0.231373)
-
-[node name="ShadowL3" type="ColorRect" parent="Tower/Pivot"]
-offset_left = -48.0
-offset_top = -176.0
-offset_right = -36.0
-offset_bottom = 176.0
-color = Color(0, 0, 0, 0.231373)
-
-[node name="ShadowR1" type="ColorRect" parent="Tower/Pivot"]
-offset_left = 44.0
-offset_top = -176.0
-offset_right = 48.0
-offset_bottom = 176.0
-color = Color(0, 0, 0, 0.231373)
-
-[node name="ShadowR2" type="ColorRect" parent="Tower/Pivot"]
-offset_left = 40.0
-offset_top = -176.0
-offset_right = 48.0
-offset_bottom = 176.0
-color = Color(0, 0, 0, 0.231373)
-
-[node name="ShadowR3" type="ColorRect" parent="Tower/Pivot"]
-offset_left = 36.0
-offset_top = -176.0
-offset_right = 48.0
-offset_bottom = 176.0
-color = Color(0, 0, 0, 0.231373)
+[node name="ShadowRight" parent="Tower" instance=ExtResource("2_jlsqs")]
+position = Vector2(48, 3.8147e-06)
+scale = Vector2(0.75, 0.5)
+texture = ExtResource("8_q8u5g")
+flip_h = true
+region_rect = Rect2(0, 0, 128, 1408)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(640, 512)
