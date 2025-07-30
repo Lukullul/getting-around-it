@@ -2,6 +2,7 @@ extends Node2D
 
 @export var rotation_velocity : float = 0.1
 
+
 func _process(delta: float) -> void:
 	_scroll_background()
 	
@@ -17,3 +18,12 @@ func _scroll_background():
 	# print(viewport_size)
 	# $Sky/Pivot.position.y = $Player.position.y - 800
 	# $Sun/Sprite2D.position.y = $Player.position.y - viewport_size.y / 2
+
+
+
+func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	area.show()
+
+
+func _on_area_2d_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	area.hide()
