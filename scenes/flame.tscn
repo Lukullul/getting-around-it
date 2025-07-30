@@ -1,0 +1,64 @@
+[gd_scene load_steps=12 format=3 uid="uid://d2qqrtvdke7om"]
+
+[ext_resource type="Script" uid="uid://7iyij7q7q2na" path="res://scripts/flame.gd" id="1_ktous"]
+[ext_resource type="Texture2D" uid="uid://lbjdhr7mgtdw" path="res://assets/fireball/Feuerball1.png" id="2_l014h"]
+[ext_resource type="Texture2D" uid="uid://clvt1gbumbxfo" path="res://assets/fireball/Feuerball2.png" id="3_20r0a"]
+[ext_resource type="Texture2D" uid="uid://b5lgx8wqcxfi6" path="res://assets/fireball/Feuerball3.png" id="4_jiew0"]
+[ext_resource type="Texture2D" uid="uid://s0fhbhq6f1rb" path="res://assets/fireball/Feuerball4.png" id="5_y1kxg"]
+[ext_resource type="Texture2D" uid="uid://dehcn5p44mp5c" path="res://assets/fireball/Feuerball5.png" id="6_wkqv1"]
+[ext_resource type="Texture2D" uid="uid://b4ccarml4ji5n" path="res://assets/fireball/Feuerball6.png" id="7_qba0e"]
+[ext_resource type="Texture2D" uid="uid://bohpmpug852w4" path="res://assets/fireball/Feuerball7.png" id="8_df7ss"]
+[ext_resource type="Texture2D" uid="uid://bv3aea7tyox5g" path="res://assets/fireball/Feuerball8.png" id="9_jcynh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1iyp"]
+size = Vector2(17.5, 13.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pyl84"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l014h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_20r0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jiew0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_y1kxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wkqv1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qba0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_df7ss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jcynh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Flame" type="Area2D"]
+modulate = Color(0.989819, 0.694429, 0.708393, 1)
+scale = Vector2(4, 4)
+collision_mask = 2
+script = ExtResource("1_ktous")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_t1iyp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_pyl84")
+autoplay = "default"
+frame_progress = 0.742576
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

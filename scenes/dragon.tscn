@@ -1,0 +1,89 @@
+[gd_scene load_steps=16 format=3 uid="uid://dkrnqsix11mfa"]
+
+[ext_resource type="Script" uid="uid://dosfy7e286ub7" path="res://scripts/dragon.gd" id="1_vfigm"]
+[ext_resource type="Texture2D" uid="uid://dk78d0nhuw5j3" path="res://assets/dragon/drache_rough-1.png" id="2_kr2gv"]
+[ext_resource type="Texture2D" uid="uid://bf3mbxh7cxcxf" path="res://assets/dragon/drache_rough-2.png" id="3_el11r"]
+[ext_resource type="Texture2D" uid="uid://cjye8mapxyjhj" path="res://assets/dragon/drache_rough-3.png" id="4_atspo"]
+[ext_resource type="Texture2D" uid="uid://c4ww7ba2lqdy8" path="res://assets/dragon/drache_rough-4.png" id="5_k2kfc"]
+[ext_resource type="Texture2D" uid="uid://cbowajs5p68co" path="res://assets/dragon/drache_rough-5.png" id="6_8u8im"]
+[ext_resource type="Texture2D" uid="uid://dm5gc5v5jqpwd" path="res://assets/dragon/drache_rough-6.png" id="7_kld06"]
+[ext_resource type="Texture2D" uid="uid://dcsjh4sutkkua" path="res://assets/dragon/drache_rough-7.png" id="8_x3hxg"]
+[ext_resource type="Texture2D" uid="uid://dqbtrtsqi36g0" path="res://assets/dragon/drache_rough-8.png" id="9_mqowv"]
+[ext_resource type="Texture2D" uid="uid://cjskmdxl52e15" path="res://assets/dragon/drache_rough-9.png" id="10_2yucp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8f1sh"]
+size = Vector2(312, 176)
+
+[sub_resource type="Animation" id="Animation_5q8uj"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_kr2gv"]
+resource_name = "shoot"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lmr38"]
+_data = {
+&"RESET": SubResource("Animation_5q8uj"),
+&"shoot": SubResource("Animation_kr2gv")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pgi5k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kr2gv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_el11r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_atspo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k2kfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8u8im")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kld06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_x3hxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mqowv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2yucp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 13.0
+}]
+
+[node name="Dragon" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_vfigm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-62, 74)
+shape = SubResource("RectangleShape2D_8f1sh")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-47, 97)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lmr38")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_pgi5k")
+autoplay = "default"
+frame_progress = 0.170148
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
