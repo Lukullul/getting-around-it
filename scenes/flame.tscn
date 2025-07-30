@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2qqrtvdke7om"]
+
+[ext_resource type="Script" uid="uid://cpsqnd5eyor8n" path="res://scripts/flame.gd" id="1_ktous"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1iyp"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ktous"]
+
+[node name="Flame" type="Area2D"]
+modulate = Color(0.989819, 0.694429, 0.708393, 1)
+scale = Vector2(4, 4)
+collision_mask = 2
+script = ExtResource("1_ktous")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t1iyp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.375, -0.625)
+scale = Vector2(21.25, 21.25)
+texture = SubResource("PlaceholderTexture2D_ktous")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

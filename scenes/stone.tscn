@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm6bw35nxbahb"]
+
+[ext_resource type="Texture2D" uid="uid://dyntwcy6com0u" path="res://assets/bricks.png" id="1_hmdus"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+size = Vector2(62, 61)
+
+[node name="Stone" type="StaticBody2D"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_sugp2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hmdus")

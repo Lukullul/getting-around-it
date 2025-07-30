@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cif6kfvns0jx5"]
+
+[ext_resource type="Script" uid="uid://dr5htrrb42la0" path="res://scripts/wood.gd" id="1_d45ue"]
+[ext_resource type="Texture2D" uid="uid://dyntwcy6com0u" path="res://assets/bricks.png" id="2_es2n6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+size = Vector2(62, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
+size = Vector2(65, 20)
+
+[node name="Wood" type="StaticBody2D"]
+modulate = Color(1, 0, 0, 1)
+script = ExtResource("1_d45ue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_sugp2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_es2n6")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -36)
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
