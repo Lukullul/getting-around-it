@@ -31,7 +31,8 @@ func _on_toggle_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index:
 
 func _on_mirrow_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if(area is Platform):
-		var sprite = MirrorSprite.new(area.position, area.get_node("BackgroundTile"))
+		var start_vector = area.position - Vector2(2 * Global.block_size, 0)
+		var sprite = MirrorSprite.new(start_vector, area.get_node("BackgroundTile"))
 		add_child(sprite)
 
 

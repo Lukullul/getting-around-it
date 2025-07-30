@@ -13,10 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://ctlohe0eaqxhv" path="res://assets/bricks.png" id="11_bjd11"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
-size = Vector2(192, 704)
+size = Vector2(128, 704)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wp0k4"]
-size = Vector2(32, 704)
+size = Vector2(256, 704)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cm0pq"]
 size = Vector2(128, 128)
@@ -89,14 +89,9 @@ region_rect = Rect2(0, 0, 128, 1408)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/AreaToggle"]
 shape = SubResource("RectangleShape2D_q8u5g")
 
-[node name="AreaMirrow" type="Area2D" parent="Tower"]
+[node name="AreaMirror" type="Area2D" parent="Tower"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/AreaMirrow"]
-position = Vector2(112, 0)
-shape = SubResource("RectangleShape2D_wp0k4")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Tower/AreaMirrow"]
-position = Vector2(-112, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/AreaMirror"]
 shape = SubResource("RectangleShape2D_wp0k4")
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -112,9 +107,10 @@ shape = SubResource("RectangleShape2D_cm0pq")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Platform" type="Area2D" parent="."]
-position = Vector2(1280, 352)
+position = Vector2(1344, 352)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("10_wp0k4")
+metadata/_edit_group_ = true
 
 [node name="BackgroundTile" parent="Platform" instance=ExtResource("2_jlsqs")]
 texture = ExtResource("11_bjd11")
@@ -125,5 +121,5 @@ shape = SubResource("RectangleShape2D_lhr70")
 
 [connection signal="area_shape_entered" from="Tower/AreaToggle" to="." method="_on_toggle_area_shape_entered"]
 [connection signal="area_shape_exited" from="Tower/AreaToggle" to="." method="_on_toggle_area_shape_exited"]
-[connection signal="area_shape_entered" from="Tower/AreaMirrow" to="." method="_on_mirrow_area_shape_entered"]
-[connection signal="area_shape_exited" from="Tower/AreaMirrow" to="." method="_on_mirrow_area_shape_exited"]
+[connection signal="area_shape_entered" from="Tower/AreaMirror" to="." method="_on_mirrow_area_shape_entered"]
+[connection signal="area_shape_exited" from="Tower/AreaMirror" to="." method="_on_mirrow_area_shape_exited"]
