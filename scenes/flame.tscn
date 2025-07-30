@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bv3aea7tyox5g" path="res://assets/fireball/Feuerball8.png" id="9_jcynh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1iyp"]
-size = Vector2(17.5, 13.5)
+size = Vector2(13.75, 9.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pyl84"]
 animations = [{
@@ -48,11 +48,12 @@ animations = [{
 [node name="Flame" type="Area2D"]
 modulate = Color(0.989819, 0.694429, 0.708393, 1)
 scale = Vector2(4, 4)
+collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_ktous")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(1.625, 1)
 shape = SubResource("RectangleShape2D_t1iyp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

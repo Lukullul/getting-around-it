@@ -3,15 +3,21 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -700.0
 
+@onready var timer: Timer = $Timer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-
-
+var attacking := false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
+	# Attacking
+	if Input.is_action_just_pressed("attack"):
+		attacking = true
+		animated_sprite.play("slash")
+		timer.start()
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -27,16 +33,28 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 	# Animations
-	if is_on_floor():
-		if velocity.x == 0:
-			animated_sprite.play("idle")
+	if not attacking:
+		if is_on_floor():
+			if velocity.x == 0:
+				animated_sprite.play("idle")
+			else:
+				animated_sprite.play("run")
 		else:
-			animated_sprite.play("run")
-	else:
-		animated_sprite.play("jump")
+			animated_sprite.play("jump")
 
 	move_and_slide()
 
 
 func _on_flame_hit() -> void:
 	pass
+
+
+func _on_timer_timeout() -> void:
+	attacking = false
+
+
+
+
+func _on_sword_attack_area_area_entered(area: Area2D) -> void:
+	if attacking:
+		area.direction *= -3

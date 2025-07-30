@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d0b60mijqawqy"]
+[gd_scene load_steps=22 format=3 uid="uid://d0b60mijqawqy"]
 
 [ext_resource type="Script" uid="uid://dhgbqwjv62qe8" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://7htlau0wgtbw" path="res://assets/knight/idle_-1.png" id="2_oprun"]
@@ -15,9 +15,12 @@
 [ext_resource type="Texture2D" uid="uid://cupegadchtx0s" path="res://assets/knight/9f_walkcycle_cleanup_color-6.png" id="13_60mlk"]
 [ext_resource type="Texture2D" uid="uid://mye27sxpsgts" path="res://assets/knight/9f_walkcycle_cleanup_color-7.png" id="14_i4ail"]
 [ext_resource type="Texture2D" uid="uid://c8efwvdw58bki" path="res://assets/knight/9f_walkcycle_cleanup_color-8.png" id="15_a38lo"]
+[ext_resource type="Texture2D" uid="uid://3ugqn07vk4xv" path="res://assets/knight/slash-1.png" id="16_fulsm"]
+[ext_resource type="Texture2D" uid="uid://cvnit1fw8ts87" path="res://assets/knight/slash-2.png" id="17_4r5pv"]
+[ext_resource type="Texture2D" uid="uid://dymq7wmym55xy" path="res://assets/knight/slash-3.png" id="18_60mlk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
-size = Vector2(228, 360)
+size = Vector2(137.5, 300)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4flbx"]
 animations = [{
@@ -77,7 +80,24 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_fulsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_4r5pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_60mlk")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 9.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ail"]
+size = Vector2(400.625, 237.5)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.4, 0.4)
@@ -85,16 +105,27 @@ collision_layer = 2
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(41, 26)
+position = Vector2(41.25, 47.5)
 shape = SubResource("RectangleShape2D_sh265")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(40, 0)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_4flbx")
-animation = &"run"
+animation = &"idle"
 
-[node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="SwordAttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordAttackArea"]
+position = Vector2(34.6875, 13.75)
+shape = SubResource("RectangleShape2D_i4ail")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.218
+one_shot = true
+
+[connection signal="area_entered" from="SwordAttackArea" to="." method="_on_sword_attack_area_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

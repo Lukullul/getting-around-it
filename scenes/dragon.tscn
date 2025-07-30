@@ -1,15 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://dkrnqsix11mfa"]
+[gd_scene load_steps=17 format=3 uid="uid://dkrnqsix11mfa"]
 
 [ext_resource type="Script" uid="uid://dosfy7e286ub7" path="res://scripts/dragon.gd" id="1_vfigm"]
-[ext_resource type="Texture2D" uid="uid://dk78d0nhuw5j3" path="res://assets/dragon/drache_rough-1.png" id="2_kr2gv"]
-[ext_resource type="Texture2D" uid="uid://bf3mbxh7cxcxf" path="res://assets/dragon/drache_rough-2.png" id="3_el11r"]
-[ext_resource type="Texture2D" uid="uid://cjye8mapxyjhj" path="res://assets/dragon/drache_rough-3.png" id="4_atspo"]
-[ext_resource type="Texture2D" uid="uid://c4ww7ba2lqdy8" path="res://assets/dragon/drache_rough-4.png" id="5_k2kfc"]
-[ext_resource type="Texture2D" uid="uid://cbowajs5p68co" path="res://assets/dragon/drache_rough-5.png" id="6_8u8im"]
-[ext_resource type="Texture2D" uid="uid://dm5gc5v5jqpwd" path="res://assets/dragon/drache_rough-6.png" id="7_kld06"]
-[ext_resource type="Texture2D" uid="uid://dcsjh4sutkkua" path="res://assets/dragon/drache_rough-7.png" id="8_x3hxg"]
-[ext_resource type="Texture2D" uid="uid://dqbtrtsqi36g0" path="res://assets/dragon/drache_rough-8.png" id="9_mqowv"]
-[ext_resource type="Texture2D" uid="uid://cjskmdxl52e15" path="res://assets/dragon/drache_rough-9.png" id="10_2yucp"]
+[ext_resource type="Texture2D" uid="uid://codegiivrvl60" path="res://assets/dragon/drache_rough_yellow-1.png" id="2_kr2gv"]
+[ext_resource type="Texture2D" uid="uid://sl04ogfaf6tm" path="res://assets/dragon/drache_rough_yellow-2.png" id="3_el11r"]
+[ext_resource type="Texture2D" uid="uid://jrsccbe7hgq" path="res://assets/dragon/drache_rough_yellow-3.png" id="4_atspo"]
+[ext_resource type="Texture2D" uid="uid://4rxocxsa8xg2" path="res://assets/dragon/drache_rough_yellow-4.png" id="5_k2kfc"]
+[ext_resource type="Texture2D" uid="uid://coah5ibn4hljo" path="res://assets/dragon/drache_rough_yellow-5.png" id="6_8u8im"]
+[ext_resource type="Texture2D" uid="uid://fvqleovt4smf" path="res://assets/dragon/drache_rough_yellow-6.png" id="7_kld06"]
+[ext_resource type="Texture2D" uid="uid://cerr8f8ylfluq" path="res://assets/dragon/drache_rough_yellow-7.png" id="8_x3hxg"]
+[ext_resource type="Texture2D" uid="uid://6vdtifnl2bfl" path="res://assets/dragon/drache_rough_yellow-8.png" id="9_mqowv"]
+[ext_resource type="Texture2D" uid="uid://dk81ca1pyn0sn" path="res://assets/dragon/drache_rough_yellow-9.png" id="10_2yucp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8f1sh"]
 size = Vector2(312, 176)
@@ -61,6 +61,9 @@ animations = [{
 "speed": 13.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kr2gv"]
+size = Vector2(131, 168)
+
 [node name="Dragon" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_vfigm")
@@ -85,5 +88,18 @@ frame_progress = 0.170148
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="DragonHitbox" type="Area2D" parent="."]
+position = Vector2(-336, 12)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragonHitbox"]
+position = Vector2(46.5, 59)
+shape = SubResource("RectangleShape2D_kr2gv")
+
+[node name="FlipTimer" type="Timer" parent="."]
+wait_time = 4.0
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="FlipTimer" to="." method="_on_flip_timer_timeout"]

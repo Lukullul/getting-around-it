@@ -1,23 +1,23 @@
 [gd_scene load_steps=21 format=4 uid="uid://ckll30coomscy"]
 
-[ext_resource type="Script" uid="uid://beq45rcnitrlm" path="res://scripts/main.gd" id="1_a8y0u"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://3p7lcd1g0vy" path="res://scenes/background/background_tile.tscn" id="2_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://bq173pfqwejjq" path="res://assets/background/background_sky.png" id="3_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://dd2ng6gyk0jch" path="res://assets/background/background_sky3.png" id="4_muem4"]
 [ext_resource type="Texture2D" uid="uid://cp5yqfqm37128" path="res://assets/background/background_sky2.png" id="5_dp3eg"]
-[ext_resource type="Texture2D" uid="uid://qr2m5awgdply" path="res://assets/background/sun.png" id="6_0ld40"]
-[ext_resource type="Texture2D" uid="uid://d1pl3as6q873k" path="res://assets/background/background_wall.png" id="7_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://df2s5yh62uoj8" path="res://assets/background/sonne.png" id="6_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://b2r76ai0m62tw" path="res://assets/brick_tile.png" id="7_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://chwwvbjwk3qyo" path="res://assets/background/tower_shadow.png" id="8_yc10j"]
 [ext_resource type="PackedScene" uid="uid://de6osmjxonvlb" path="res://scenes/tiles/blank.tscn" id="9_jscy8"]
 [ext_resource type="PackedScene" uid="uid://ddgkt32nvynhr" path="res://scenes/tiles/stone.tscn" id="10_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://gdlxfbrimas8" path="res://scenes/tiles/wood.tscn" id="11_y6deb"]
 [ext_resource type="PackedScene" uid="uid://bavf5h6oiha8h" path="res://scenes/tiles/flame.tscn" id="12_og1vs"]
 [ext_resource type="PackedScene" uid="uid://d0b60mijqawqy" path="res://scenes/player.tscn" id="13_2wyq8"]
-[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="14_vxglm"]
+[ext_resource type="PackedScene" uid="uid://byjbfcfesvar1" path="res://scenes/killzone.tscn" id="14_vxglm"]
 [ext_resource type="PackedScene" uid="uid://dkrnqsix11mfa" path="res://scenes/dragon.tscn" id="15_jbj1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
-size = Vector2(128, 704)
+size = Vector2(192, 704)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wp0k4"]
 size = Vector2(256, 704)
@@ -73,33 +73,35 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" parent="Sun" instance=ExtResource("2_jkv2x")]
 position = Vector2(16, 16)
-scale = Vector2(2, 2)
-texture = ExtResource("6_0ld40")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_jkv2x")
+region_enabled = false
 
 [node name="Tower" parent="." instance=ExtResource("2_jkv2x")]
 z_index = -1
 position = Vector2(640, 512)
 scale = Vector2(4, 4)
-texture = ExtResource("7_gqmmt")
+texture = ExtResource("7_jkv2x")
 region_rect = Rect2(0, 0, 192, 704)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="ShadowLeft" parent="Tower" instance=ExtResource("2_jkv2x")]
+z_index = 1
 position = Vector2(-48, 3.8147e-06)
 scale = Vector2(0.75, 0.5)
 texture = ExtResource("8_yc10j")
 region_rect = Rect2(0, 0, 128, 1408)
 
 [node name="ShadowRight" parent="Tower" instance=ExtResource("2_jkv2x")]
-position = Vector2(48, 3.8147e-06)
+z_index = 1
+position = Vector2(48.5, 7.62939e-06)
 scale = Vector2(0.75, 0.5)
 texture = ExtResource("8_yc10j")
 flip_h = true
 region_rect = Rect2(0, 0, 128, 1408)
 
 [node name="AreaToggle" type="Area2D" parent="Tower"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/AreaToggle"]
 shape = SubResource("RectangleShape2D_q8u5g")
@@ -111,7 +113,7 @@ visible = false
 shape = SubResource("RectangleShape2D_wp0k4")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AABSAB0AAAAAAAAAAQAHAAsAAAAAAAAAAgAIAAsAAAAAAAAAAgAHAAwAAAAAAAAAAgAIAAwAAAAAAAAAAgAJAAwAAAAAAAAAAgAKAAwAAAAAAAAAAgALAAwAAAAAAAAAAgAMAAwAAAAAAAAAAgAOAAsAAAAAAAAAAgAPAAsAAAAAAAAAAgAQAAsAAAAAAAAAAgARAAsAAAAAAAAAAgAOAAwAAAAAAAAAAgANAAwAAAAAAAAAAgAQAAoAAAAAAAAAAgARAAoAAAAAAAAAAgASAAoAAAAAAAAAAgASAAkAAAAAAAAAAgARAAkAAAAAAAAAAgAUAAcAAAAAAAAAAgAVAAcAAAAAAAAAAgAUAAgAAAAAAAAAAgATAAkAAAAAAAAAAgAVAAgAAAAAAAAAAgASAAgAAAAAAAAAAgATAAgAAAAAAAAAAgAUAAkAAAAAAAAAAgAGAAsAAAAAAAAAAgAFAAsAAAAAAAAAAgAEAAsAAAAAAAAAAgADAAsAAAAAAAAAAgACAAsAAAAAAAAAAgABAAsAAAAAAAAAAgAEAAwAAAAAAAAAAgAFAAwAAAAAAAAAAgAGAAwAAAAAAAAAAgAIAA0AAAAAAAAAAgAJAA0AAAAAAAAAAgAKAA0AAAAAAAAAAgALAA0AAAAAAAAAAgAMAA0AAAAAAAAAAgANAA0AAAAAAAAAAgAKAA4AAAAAAAAAAgALAA4AAAAAAAAAAgA=")
+tile_map_data = PackedByteArray("AABSAB0AAAAAAAAAAQAIAAsAAAAAAAAAAgAJAAwAAAAAAAAAAgAKAAwAAAAAAAAAAgALAAwAAAAAAAAAAgAMAAwAAAAAAAAAAgAOAAsAAAAAAAAAAgAPAAsAAAAAAAAAAgANAAwAAAAAAAAAAgAQAAoAAAAAAAAAAgARAAkAAAAAAAAAAgAUAAcAAAAAAAAAAgASAAgAAAAAAAAAAgAWAAYAAAAAAAAAAgATAAgAAAAAAAAAAgAEAAoAAAAAAAAAAgADAAoAAAAAAAAAAgACAAkAAAAAAAAAAgAHAAsAAAAAAAAAAgAGAAsAAAAAAAAAAgAFAAsAAAAAAAAAAgABAAkAAAAAAAAAAgAYAAQAAAAAAAAAAgAZAAMAAAAAAAAAAgAaAAIAAAAAAAAAAgAbAAIAAAAAAAAAAgAcAAEAAAAAAAAAAgAdAAEAAAAAAAAAAgAeAAAAAAAAAAAAAgAfAAAAAAAAAAAAAgAgAP//AAAAAAAAAgAlAPz/AAAAAAAAAgAmAPz/AAAAAAAAAgAnAPv/AAAAAAAAAgAoAPr/AAAAAAAAAgAiAPf/AAAAAAAAAgAhAPf/AAAAAAAAAgAgAPf/AAAAAAAAAgAfAPb/AAAAAAAAAgAeAPb/AAAAAAAAAgAdAPb/AAAAAAAAAgAcAPb/AAAAAAAAAgAbAPX/AAAAAAAAAgAaAPX/AAAAAAAAAgAXAPT/AAAAAAAAAgAWAPT/AAAAAAAAAgAVAPT/AAAAAAAAAgAUAPP/AAAAAAAAAgATAPP/AAAAAAAAAgASAPP/AAAAAAAAAgANAPH/AAAAAAAAAgAMAPD/AAAAAAAAAgAIAO3/AAAAAAAAAgAHAO3/AAAAAAAAAgAGAOz/AAAAAAAAAgAFAOz/AAAAAAAAAgAEAOv/AAAAAAAAAgADAOv/AAAAAAAAAgACAOr/AAAAAAAAAgAAAOn/AAAAAAAAAgD//+j/AAAAAAAAAgD+/+j/AAAAAAAAAgA=")
 tile_set = SubResource("TileSet_mwfav")
 metadata/_edit_lock_ = true
 
