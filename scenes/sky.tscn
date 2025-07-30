@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqged4a2l8ipw"]
+
+[ext_resource type="PackedScene" uid="uid://3p7lcd1g0vy" path="res://scenes/background_tile.tscn" id="1_4krsh"]
+[ext_resource type="Texture2D" uid="uid://bq173pfqwejjq" path="res://assets/background/background_sky.png" id="2_xeklh"]
+[ext_resource type="Texture2D" uid="uid://dd2ng6gyk0jch" path="res://assets/background/background_sky3.png" id="3_lsyyi"]
+[ext_resource type="Texture2D" uid="uid://cp5yqfqm37128" path="res://assets/background/background_sky2.png" id="4_aa7hk"]
+
+[node name="Sky" type="Node2D"]
+z_index = 2
+
+[node name="BackgroundUp" parent="." instance=ExtResource("1_4krsh")]
+position = Vector2(0, -384)
+texture = ExtResource("2_xeklh")
+region_rect = Rect2(0, 0, 256, 112)
+
+[node name="BackgroundDown" parent="." instance=ExtResource("1_4krsh")]
+position = Vector2(0, 256)
+texture = ExtResource("3_lsyyi")
+region_rect = Rect2(0, 0, 256, 32)
+
+[node name="BackgroundTransition" parent="." instance=ExtResource("1_4krsh")]
+position = Vector2(0, 128)
+texture = ExtResource("4_aa7hk")
+region_rect = Rect2(0, 0, 256, 16)

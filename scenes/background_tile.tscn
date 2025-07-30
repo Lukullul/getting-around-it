@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://3p7lcd1g0vy"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7rb34"]
+
+[node name="BackgroundTile" type="Sprite2D"]
+texture_repeat = 2
+scale = Vector2(8, 8)
+texture = SubResource("PlaceholderTexture2D_7rb34")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
