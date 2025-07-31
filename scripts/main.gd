@@ -4,7 +4,8 @@ extends Node2D
 
 
 func _process(delta: float) -> void:
-	_scroll_background()
+	#_scroll_background()
+	pass
 	
 func _scroll_background():
 	# Tower

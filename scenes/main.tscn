@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://ckll30coomscy"]
+[gd_scene load_steps=18 format=3 uid="uid://ckll30coomscy"]
 
 [ext_resource type="Script" uid="uid://beq45rcnitrlm" path="res://scripts/main.gd" id="1_a8y0u"]
+[ext_resource type="Script" uid="uid://cra4ulbf5fch7" path="res://scenes/background.gd" id="2_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://3p7lcd1g0vy" path="res://scenes/background/background_tile.tscn" id="2_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://bq173pfqwejjq" path="res://assets/background/background_sky.png" id="3_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://dd2ng6gyk0jch" path="res://assets/background/background_sky3.png" id="4_muem4"]
@@ -25,46 +26,49 @@ size = Vector2(256, 704)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_a8y0u")
 
-[node name="Sky" type="Parallax2D" parent="."]
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("2_a8y0u")
+
+[node name="Sky" type="Parallax2D" parent="Background"]
 z_index = -3
 scroll_scale = Vector2(1, 0)
 scroll_offset = Vector2(320, 380)
 repeat_size = Vector2(128, 0)
 metadata/_edit_lock_ = true
 
-[node name="Background" type="Node2D" parent="Sky"]
+[node name="Background" type="Node2D" parent="Background/Sky"]
 modulate = Color(0.710448, 0.819674, 1, 1)
 position = Vector2(704, -128)
 metadata/_edit_group_ = true
 
-[node name="BackgroundUp" parent="Sky/Background" instance=ExtResource("2_jkv2x")]
+[node name="BackgroundUp" parent="Background/Sky/Background" instance=ExtResource("2_jkv2x")]
 texture = ExtResource("3_jbj1t")
 region_rect = Rect2(0, 0, 256, 112)
 
-[node name="BackgroundDown" parent="Sky/Background" instance=ExtResource("2_jkv2x")]
+[node name="BackgroundDown" parent="Background/Sky/Background" instance=ExtResource("2_jkv2x")]
 position = Vector2(0, 640)
 texture = ExtResource("4_muem4")
 region_rect = Rect2(0, 0, 256, 32)
 
-[node name="BackgroundTransition" parent="Sky/Background" instance=ExtResource("2_jkv2x")]
+[node name="BackgroundTransition" parent="Background/Sky/Background" instance=ExtResource("2_jkv2x")]
 position = Vector2(0, 512)
 texture = ExtResource("5_dp3eg")
 region_rect = Rect2(0, 0, 256, 16)
 
-[node name="Sun" type="Parallax2D" parent="."]
+[node name="Sun" type="Parallax2D" parent="Background"]
 z_index = -2
 scale = Vector2(8, 8)
 scroll_scale = Vector2(1, 0)
 repeat_size = Vector2(320, 0)
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" parent="Sun" instance=ExtResource("2_jkv2x")]
+[node name="Sprite2D" parent="Background/Sun" instance=ExtResource("2_jkv2x")]
 position = Vector2(16, 16)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("6_jkv2x")
 region_enabled = false
 
-[node name="Tower" parent="." instance=ExtResource("2_jkv2x")]
+[node name="Tower" parent="Background" instance=ExtResource("2_jkv2x")]
 z_index = -1
 position = Vector2(640, 512)
 scale = Vector2(4, 4)
@@ -73,14 +77,14 @@ region_rect = Rect2(0, 0, 192, 704)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="ShadowLeft" parent="Tower" instance=ExtResource("2_jkv2x")]
+[node name="ShadowLeft" parent="Background/Tower" instance=ExtResource("2_jkv2x")]
 z_index = 1
 position = Vector2(-47.75, 7.62939e-06)
 scale = Vector2(0.75, 0.5)
 texture = ExtResource("8_yc10j")
 region_rect = Rect2(0, 0, 128, 1408)
 
-[node name="ShadowRight" parent="Tower" instance=ExtResource("2_jkv2x")]
+[node name="ShadowRight" parent="Background/Tower" instance=ExtResource("2_jkv2x")]
 z_index = 1
 position = Vector2(48.5, 7.62939e-06)
 scale = Vector2(0.75, 0.5)
@@ -88,15 +92,15 @@ texture = ExtResource("8_yc10j")
 flip_h = true
 region_rect = Rect2(0, 0, 128, 1408)
 
-[node name="AreaToggle" type="Area2D" parent="Tower"]
+[node name="AreaToggle" type="Area2D" parent="Background/Tower"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/AreaToggle"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Tower/AreaToggle"]
 shape = SubResource("RectangleShape2D_q8u5g")
 
-[node name="AreaMirror" type="Area2D" parent="Tower"]
+[node name="AreaMirror" type="Area2D" parent="Background/Tower"]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/AreaMirror"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Tower/AreaMirror"]
 shape = SubResource("RectangleShape2D_wp0k4")
 
 [node name="Level" parent="." instance=ExtResource("9_trceg")]
@@ -125,11 +129,11 @@ position = Vector2(-328, 480)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("16_jbj1t")
 
-[connection signal="area_shape_entered" from="Tower/AreaToggle" to="." method="_on_toggle_area_shape_entered"]
-[connection signal="area_shape_exited" from="Tower/AreaToggle" to="." method="_on_toggle_area_shape_exited"]
-[connection signal="body_entered" from="Tower/AreaToggle" to="." method="_on_area_toggle_body_entered"]
-[connection signal="body_exited" from="Tower/AreaToggle" to="." method="_on_area_toggle_body_exited"]
-[connection signal="area_shape_entered" from="Tower/AreaMirror" to="." method="_on_mirrow_area_shape_entered"]
-[connection signal="area_shape_exited" from="Tower/AreaMirror" to="." method="_on_mirrow_area_shape_exited"]
-[connection signal="body_entered" from="Tower/AreaMirror" to="." method="_on_mirror_body_entered"]
-[connection signal="body_exited" from="Tower/AreaMirror" to="." method="_on_area_mirror_body_exited"]
+[connection signal="area_shape_entered" from="Background/Tower/AreaToggle" to="." method="_on_toggle_area_shape_entered"]
+[connection signal="area_shape_exited" from="Background/Tower/AreaToggle" to="." method="_on_toggle_area_shape_exited"]
+[connection signal="body_entered" from="Background/Tower/AreaToggle" to="." method="_on_area_toggle_body_entered"]
+[connection signal="body_exited" from="Background/Tower/AreaToggle" to="." method="_on_area_toggle_body_exited"]
+[connection signal="area_shape_entered" from="Background/Tower/AreaMirror" to="." method="_on_mirrow_area_shape_entered"]
+[connection signal="area_shape_exited" from="Background/Tower/AreaMirror" to="." method="_on_mirrow_area_shape_exited"]
+[connection signal="body_entered" from="Background/Tower/AreaMirror" to="." method="_on_mirror_body_entered"]
+[connection signal="body_exited" from="Background/Tower/AreaMirror" to="." method="_on_area_mirror_body_exited"]
