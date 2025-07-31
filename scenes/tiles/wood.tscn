@@ -3,3 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://de6osmjxonvlb" path="res://scenes/tiles/blank.tscn" id="1_wyrcr"]
 
 [node name="Wood" instance=ExtResource("1_wyrcr")]
+
+[node name="ColorRect" parent="." index="2"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 40.0
