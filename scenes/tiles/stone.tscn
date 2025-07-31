@@ -1,15 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddgkt32nvynhr"]
+[gd_scene load_steps=3 format=3 uid="uid://ddgkt32nvynhr"]
 
 [ext_resource type="PackedScene" uid="uid://de6osmjxonvlb" path="res://scenes/tiles/blank.tscn" id="1_3qrb7"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3qrb7"]
-load_path = "res://.godot/imported/tile_sheet_128px_by_128px.png-26727c18cf06c012e7fe836dab098202.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cbxql"]
-atlas = SubResource("CompressedTexture2D_3qrb7")
-region = Rect2(128, 0, 128, 128)
+[ext_resource type="Texture2D" uid="uid://ctlohe0eaqxhv" path="res://assets/bricks.png" id="2_cbxql"]
 
 [node name="Stone" instance=ExtResource("1_3qrb7")]
 
 [node name="Sprite2D" parent="." index="1"]
-texture = SubResource("AtlasTexture_cbxql")
+scale = Vector2(2, 2)
+texture = ExtResource("2_cbxql")
