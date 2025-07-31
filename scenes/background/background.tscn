@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dx5eqd82vpqo1" path="res://assets/tile_sheet_128px_by_128px.png" id="5_iptv4"]
 [ext_resource type="Texture2D" uid="uid://clb2l75fjht3n" path="res://assets/background/doppelte_berge-1.png" id="6_o0ti4"]
 [ext_resource type="Texture2D" uid="uid://df2s5yh62uoj8" path="res://assets/background/sonne.png" id="6_td6w2"]
-[ext_resource type="Texture2D" uid="uid://b2r76ai0m62tw" path="res://assets/brick_tile.png" id="7_r2thq"]
 [ext_resource type="Texture2D" uid="uid://chwwvbjwk3qyo" path="res://assets/background/tower_shadow.png" id="8_0470j"]
 [ext_resource type="Texture2D" uid="uid://baqqpuferqpse" path="res://assets/background/doppelte_berge-2.png" id="8_gco5v"]
+[ext_resource type="Texture2D" uid="uid://ctlohe0eaqxhv" path="res://assets/bricks.png" id="9_iptv4"]
 [ext_resource type="Texture2D" uid="uid://dqij12rrrfssl" path="res://assets/background/doppelte_berge-3.png" id="10_3mmpu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8v60"]
@@ -103,7 +103,7 @@ texture = SubResource("AtlasTexture_g8v60")
 z_index = -1
 position = Vector2(640, 512)
 scale = Vector2(4, 4)
-texture = ExtResource("7_r2thq")
+texture = ExtResource("9_iptv4")
 region_rect = Rect2(0, 0, 192, 704)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -124,11 +124,13 @@ flip_h = true
 region_rect = Rect2(0, 0, 128, 1408)
 
 [node name="AreaToggle" type="Area2D" parent="Tower"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/AreaToggle"]
 shape = SubResource("RectangleShape2D_q8u5g")
 
 [node name="AreaMirror" type="Area2D" parent="Tower"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/AreaMirror"]
 shape = SubResource("RectangleShape2D_wp0k4")
