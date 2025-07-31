@@ -1,10 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dml3wini70m14"]
+[gd_scene load_steps=9 format=3 uid="uid://dml3wini70m14"]
 
 [ext_resource type="Script" uid="uid://cra4ulbf5fch7" path="res://scripts/background.gd" id="1_l5f8m"]
 [ext_resource type="PackedScene" uid="uid://3p7lcd1g0vy" path="res://scenes/background/background_tile.tscn" id="2_6vm3t"]
 [ext_resource type="Texture2D" uid="uid://bq173pfqwejjq" path="res://assets/background/background_sky.png" id="3_8efq7"]
-[ext_resource type="Texture2D" uid="uid://dd2ng6gyk0jch" path="res://assets/background/background_sky3.png" id="4_da6cc"]
-[ext_resource type="Texture2D" uid="uid://cp5yqfqm37128" path="res://assets/background/background_sky2.png" id="5_b6e46"]
 [ext_resource type="Texture2D" uid="uid://df2s5yh62uoj8" path="res://assets/background/sonne.png" id="6_td6w2"]
 [ext_resource type="Texture2D" uid="uid://b2r76ai0m62tw" path="res://assets/brick_tile.png" id="7_r2thq"]
 [ext_resource type="Texture2D" uid="uid://chwwvbjwk3qyo" path="res://assets/background/tower_shadow.png" id="8_0470j"]
@@ -19,43 +17,45 @@ size = Vector2(256, 704)
 script = ExtResource("1_l5f8m")
 
 [node name="Sky" type="Parallax2D" parent="."]
-z_index = -3
-scroll_scale = Vector2(1, 0)
-scroll_offset = Vector2(320, 380)
-repeat_size = Vector2(128, 0)
-metadata/_edit_lock_ = true
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1408, 0)
 
-[node name="Background" type="Node2D" parent="Sky"]
-modulate = Color(0.710448, 0.819674, 1, 1)
-position = Vector2(704, -128)
-metadata/_edit_group_ = true
-
-[node name="BackgroundUp" parent="Sky/Background" instance=ExtResource("2_6vm3t")]
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+z_index = -6
+position = Vector2(-64, -3968)
+scale = Vector2(2.34667, 1)
 texture = ExtResource("3_8efq7")
-region_rect = Rect2(0, 0, 256, 112)
+centered = false
 
-[node name="BackgroundDown" parent="Sky/Background" instance=ExtResource("2_6vm3t")]
-position = Vector2(0, 640)
-texture = ExtResource("4_da6cc")
-region_rect = Rect2(0, 0, 256, 32)
-
-[node name="BackgroundTransition" parent="Sky/Background" instance=ExtResource("2_6vm3t")]
-position = Vector2(0, 512)
-texture = ExtResource("5_b6e46")
-region_rect = Rect2(0, 0, 256, 16)
+[node name="Stare" type="Sprite2D" parent="Sky"]
 
 [node name="Sun" type="Parallax2D" parent="."]
 z_index = -2
 scale = Vector2(8, 8)
 scroll_scale = Vector2(1, 0)
 repeat_size = Vector2(320, 0)
-metadata/_edit_lock_ = true
 
 [node name="Sprite2D" parent="Sun" instance=ExtResource("2_6vm3t")]
 position = Vector2(16, 16)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("6_td6w2")
 region_enabled = false
+
+[node name="Background1" type="Parallax2D" parent="."]
+
+[node name="Montains" type="Sprite2D" parent="Background1"]
+
+[node name="Clouds" type="Sprite2D" parent="Background1"]
+
+[node name="Background2" type="Parallax2D" parent="."]
+
+[node name="Montains" type="Sprite2D" parent="Background2"]
+
+[node name="Clouds" type="Sprite2D" parent="Background2"]
+
+[node name="Forground" type="Parallax2D" parent="."]
+
+[node name="Clouds" type="Sprite2D" parent="Forground"]
 
 [node name="Tower" parent="." instance=ExtResource("2_6vm3t")]
 z_index = -1
