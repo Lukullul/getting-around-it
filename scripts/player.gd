@@ -7,6 +7,7 @@ const JUMP_VELOCITY = -800.0
 @onready var timer: Timer = $Timer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
 var attacking := false
 var facing := 1
 
@@ -19,10 +20,11 @@ func _physics_process(delta: float) -> void:
 	# Animations
 	if Input.is_action_just_pressed("attack"):
 		attacking = true
+		$AudioStreamPlayer.playing = true
 		if is_on_floor():
 			animated_sprite.play("slash")
 		else:
-			animated_sprite.play("slash")
+			animated_sprite.play("jump_slash")
 		timer.start()
 
 	if not attacking:
@@ -55,6 +57,7 @@ func _handle_movement(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	if direction:
 		facing = direction
+		print(facing)
 
 func _handle_flight(delta):
 	velocity = velocity / 1.1
@@ -79,4 +82,8 @@ func _on_timer_timeout() -> void:
 
 func _on_sword_attack_area_area_entered(area: Area2D) -> void:
 	if attacking:
-		area.direction *= -3
+		if facing == 1 and area.direction == -1:
+			area.direction *= -3
+		elif facing == -1 and area.direction == 1:
+			area.direction *= -3
+		$ParrySound.playing = true

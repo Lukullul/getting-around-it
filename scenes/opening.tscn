@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctlflwngl0lbq"]
+
+[ext_resource type="Texture2D" uid="uid://dspkna6s2455p" path="res://assets/opening-1.png" id="1_gafq3"]
+[ext_resource type="Texture2D" uid="uid://vf1cdt1xltuh" path="res://assets/opening-2.png" id="2_y6ged"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fvetl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gafq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_y6ged")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Opening" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(642, 462)
+sprite_frames = SubResource("SpriteFrames_fvetl")
+autoplay = "default"
+frame_progress = 0.522372

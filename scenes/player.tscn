@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d0b60mijqawqy"]
+[gd_scene load_steps=26 format=3 uid="uid://d0b60mijqawqy"]
 
 [ext_resource type="Script" uid="uid://dhgbqwjv62qe8" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://7htlau0wgtbw" path="res://assets/knight/idle_-1.png" id="2_oprun"]
@@ -7,8 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cd0ua5hxigr7a" path="res://assets/knight/jump_color-2.png" id="5_fulsm"]
 [ext_resource type="Texture2D" uid="uid://cpktvamvpygcp" path="res://assets/knight/jump_color-3.png" id="6_4r5pv"]
 [ext_resource type="Texture2D" uid="uid://tjakh4hvhqt5" path="res://assets/knight/jump_color-4.png" id="7_60mlk"]
+[ext_resource type="Texture2D" uid="uid://b3erurcq7iixb" path="res://assets/knight/jump_slash-1.png" id="8_60mlk"]
 [ext_resource type="Texture2D" uid="uid://csggqi1cyi17d" path="res://assets/knight/9f_walkcycle_cleanup_color-1.png" id="8_oprun"]
 [ext_resource type="Texture2D" uid="uid://bxkg0xn3v5kjt" path="res://assets/knight/9f_walkcycle_cleanup_color-2.png" id="9_a8ls1"]
+[ext_resource type="Texture2D" uid="uid://bhwb5y5q0a10o" path="res://assets/knight/jump_slash-2.png" id="9_i4ail"]
 [ext_resource type="Texture2D" uid="uid://dg76kayhtrh0h" path="res://assets/knight/9f_walkcycle_cleanup_color-3.png" id="10_qfm1y"]
 [ext_resource type="Texture2D" uid="uid://dvan57fd8vdcp" path="res://assets/knight/9f_walkcycle_cleanup_color-4.png" id="11_fulsm"]
 [ext_resource type="Texture2D" uid="uid://pyk1gqd23drk" path="res://assets/knight/9f_walkcycle_cleanup_color-5.png" id="12_4r5pv"]
@@ -18,9 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://3ugqn07vk4xv" path="res://assets/knight/slash-1.png" id="16_fulsm"]
 [ext_resource type="Texture2D" uid="uid://cvnit1fw8ts87" path="res://assets/knight/slash-2.png" id="17_4r5pv"]
 [ext_resource type="Texture2D" uid="uid://dymq7wmym55xy" path="res://assets/knight/slash-3.png" id="18_60mlk"]
+[ext_resource type="AudioStream" uid="uid://bdi4jjv8vtbin" path="res://assets/sounds/All Sword SwingUse Sounds (Terraria) - Sound Effect for editing 2_Schneider.MP3" id="21_i4ail"]
+[ext_resource type="AudioStream" uid="uid://dhpyloqt8ufo" path="res://assets/sounds/parry-ultrakill.mp3" id="22_a38lo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
-size = Vector2(137.5, 300)
+size = Vector2(125, 300)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4flbx"]
 animations = [{
@@ -51,6 +55,17 @@ animations = [{
 "loop": true,
 "name": &"jump",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_60mlk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_i4ail")
+}],
+"loop": false,
+"name": &"jump_slash",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -97,7 +112,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ail"]
-size = Vector2(457.5, 172.5)
+size = Vector2(470, 352.5)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.4, 0.4)
@@ -106,7 +121,8 @@ script = ExtResource("1_4flbx")
 fly = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
-position = Vector2(41.25, 47.5)
+position = Vector2(35, 47.5)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_sh265")
 metadata/_edit_group_ = true
 
@@ -115,20 +131,26 @@ position = Vector2(40, 0)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_4flbx")
 animation = &"slash"
-frame = 2
-frame_progress = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
 [node name="SwordAttackArea" type="Area2D" parent="."]
+scale = Vector2(1, 1)
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordAttackArea"]
-position = Vector2(26.25, 11.25)
+position = Vector2(37.5, 41.25)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_i4ail")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.218
-one_shot = true
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_i4ail")
 
-[connection signal="area_entered" from="SwordAttackArea" to="." method="_on_sword_attack_area_area_entered"]
+[node name="ParrySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_a38lo")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="SwordAttackArea" to="." method="_on_sword_attack_area_area_entered"]
