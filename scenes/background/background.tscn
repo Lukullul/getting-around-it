@@ -1,26 +1,19 @@
-[gd_scene load_steps=18 format=3 uid="uid://dml3wini70m14"]
+[gd_scene load_steps=14 format=3 uid="uid://dml3wini70m14"]
 
 [ext_resource type="Script" uid="uid://cra4ulbf5fch7" path="res://scripts/background.gd" id="1_l5f8m"]
 [ext_resource type="PackedScene" uid="uid://3p7lcd1g0vy" path="res://scenes/background/background_tile.tscn" id="2_6vm3t"]
 [ext_resource type="Texture2D" uid="uid://bq173pfqwejjq" path="res://assets/background/background_sky.png" id="3_8efq7"]
-[ext_resource type="Texture2D" uid="uid://37gre8fqlhny" path="res://assets/background/berge-1.png" id="5_evef5"]
-[ext_resource type="Texture2D" uid="uid://6omo38mpjwnt" path="res://assets/background/berge-2.png" id="6_iptv4"]
+[ext_resource type="Texture2D" uid="uid://dx5eqd82vpqo1" path="res://assets/tile_sheet_128px_by_128px.png" id="5_iptv4"]
 [ext_resource type="Texture2D" uid="uid://clb2l75fjht3n" path="res://assets/background/doppelte_berge-1.png" id="6_o0ti4"]
 [ext_resource type="Texture2D" uid="uid://df2s5yh62uoj8" path="res://assets/background/sonne.png" id="6_td6w2"]
-[ext_resource type="Texture2D" uid="uid://mnoegd8awrka" path="res://assets/background/berge-3.png" id="7_g8v60"]
 [ext_resource type="Texture2D" uid="uid://b2r76ai0m62tw" path="res://assets/brick_tile.png" id="7_r2thq"]
 [ext_resource type="Texture2D" uid="uid://chwwvbjwk3qyo" path="res://assets/background/tower_shadow.png" id="8_0470j"]
 [ext_resource type="Texture2D" uid="uid://baqqpuferqpse" path="res://assets/background/doppelte_berge-2.png" id="8_gco5v"]
 [ext_resource type="Texture2D" uid="uid://dqij12rrrfssl" path="res://assets/background/doppelte_berge-3.png" id="10_3mmpu"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o0ti4"]
-load_path = "res://.godot/imported/berge-1.png-a6a78ff313c5db5893acf125f5569abd.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gco5v"]
-load_path = "res://.godot/imported/berge-2.png-5934eb728dd44844a1b7ac32537a2298.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_evef5"]
-load_path = "res://.godot/imported/berge-3.png-8c31105bdbb73d9b9f12e2525b1b0042.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8v60"]
+atlas = ExtResource("5_iptv4")
+region = Rect2(0, 384, 384, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(192, 704)
@@ -60,20 +53,10 @@ scroll_scale = Vector2(0.2, 0.01)
 repeat_size = Vector2(2048, 0)
 repeat_times = 2
 
-[node name="Montains" type="Sprite2D" parent="Background1"]
-visible = false
-position = Vector2(640, 512)
-scale = Vector2(1.52, 1)
-texture = ExtResource("5_evef5")
-
-[node name="Montains2" type="Sprite2D" parent="Background1"]
-visible = false
-position = Vector2(2195, 512)
-scale = Vector2(1.52, 1)
-texture = SubResource("CompressedTexture2D_o0ti4")
-flip_h = true
-
 [node name="Clouds" type="Sprite2D" parent="Background1"]
+position = Vector2(1216, 192)
+scale = Vector2(0.57883, 0.736775)
+texture = SubResource("AtlasTexture_g8v60")
 
 [node name="Mount" type="Sprite2D" parent="Background1"]
 position = Vector2(960, 512)
@@ -84,53 +67,37 @@ z_index = -1
 scroll_scale = Vector2(0.25, 0.025)
 repeat_size = Vector2(2035, 0)
 
-[node name="Clouds" type="Sprite2D" parent="Background2"]
-
-[node name="Montains2" type="Sprite2D" parent="Background2"]
-visible = false
-position = Vector2(960, 512)
-scale = Vector2(2.18595, 1.14578)
-texture = SubResource("CompressedTexture2D_gco5v")
-flip_h = true
-
-[node name="Montains" type="Sprite2D" parent="Background2"]
-visible = false
-position = Vector2(3072, 512)
-scale = Vector2(2.18595, 1.14578)
-texture = ExtResource("6_iptv4")
-
 [node name="Mount" type="Sprite2D" parent="Background2"]
 position = Vector2(832, 512)
 texture = ExtResource("8_gco5v")
+
+[node name="Clouds" type="Sprite2D" parent="Background2"]
+position = Vector2(64, 256)
+scale = Vector2(0.694389, 0.801785)
+texture = SubResource("AtlasTexture_g8v60")
 
 [node name="Background3" type="Parallax2D" parent="."]
 z_index = -1
 scroll_scale = Vector2(1, 0.05)
 repeat_size = Vector2(2048, 0)
 
-[node name="Montains" type="Sprite2D" parent="Background3"]
-visible = false
-position = Vector2(768, 512)
-scale = Vector2(2.24857, 1.01394)
-texture = ExtResource("7_g8v60")
-flip_h = true
-
-[node name="Montains2" type="Sprite2D" parent="Background3"]
-visible = false
-position = Vector2(518, 512)
-scale = Vector2(2.24857, 1.01394)
-texture = SubResource("CompressedTexture2D_evef5")
-
-[node name="Clouds" type="Sprite2D" parent="Background3"]
-
 [node name="Mount" type="Sprite2D" parent="Background3"]
 position = Vector2(704, 512)
 texture = ExtResource("10_3mmpu")
 
+[node name="Clouds" type="Sprite2D" parent="Background3"]
+position = Vector2(-192, 64)
+texture = SubResource("AtlasTexture_g8v60")
+
 [node name="Forground" type="Parallax2D" parent="."]
 z_index = 7
+scroll_scale = Vector2(3, 0)
+repeat_size = Vector2(4096, 0)
 
 [node name="Clouds" type="Sprite2D" parent="Forground"]
+position = Vector2(1024, -64)
+scale = Vector2(2.03596, 3.4528)
+texture = SubResource("AtlasTexture_g8v60")
 
 [node name="Tower" parent="." instance=ExtResource("2_6vm3t")]
 z_index = -1
