@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckll30coomscy"]
+[gd_scene load_steps=10 format=3 uid="uid://ckll30coomscy"]
 
 [ext_resource type="Script" uid="uid://beq45rcnitrlm" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://dml3wini70m14" path="res://scenes/background/background.tscn" id="4_o6xl0"]
+[ext_resource type="AudioStream" uid="uid://bvqrbiaahy04b" path="res://assets/sounds/Gettingaroundit.mp3" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://2xmpuegkjl0j" path="res://scenes/level.tscn" id="9_trceg"]
 [ext_resource type="PackedScene" uid="uid://d0b60mijqawqy" path="res://scenes/player.tscn" id="13_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://byjbfcfesvar1" path="res://scenes/killzone.tscn" id="14_vxglm"]
@@ -40,6 +41,10 @@ position = Vector2(256, 128)
 position = Vector2(-328, 480)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("16_jbj1t")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tipki")
+autoplay = true
 
 [connection signal="toggle_entered" from="Background" to="." method="_on_area_toggle_body_entered"]
 [connection signal="toggle_exited" from="Background" to="." method="_on_area_toggle_body_exited"]
