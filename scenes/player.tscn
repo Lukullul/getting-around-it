@@ -103,6 +103,7 @@ size = Vector2(457.5, 172.5)
 scale = Vector2(0.4, 0.4)
 collision_layer = 2
 script = ExtResource("1_4flbx")
+fly = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(41.25, 47.5)

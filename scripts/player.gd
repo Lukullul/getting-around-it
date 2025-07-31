@@ -19,7 +19,10 @@ func _physics_process(delta: float) -> void:
 	# Attacking
 	if Input.is_action_just_pressed("attack"):
 		attacking = true
-		animated_sprite.play("slash")
+		if is_on_floor():
+			animated_sprite.play("slash")
+		else:
+			animated_sprite.play("slash")
 		timer.start()
 	
 	# Animations
