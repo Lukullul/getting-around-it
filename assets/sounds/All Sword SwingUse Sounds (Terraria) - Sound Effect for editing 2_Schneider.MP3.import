@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bdi4jjv8vtbin"
+path="res://.godot/imported/All Sword SwingUse Sounds (Terraria) - Sound Effect for editing 2_Schneider.MP3-5e372eaf71b64bdeb1780d6d985c4749.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/All Sword SwingUse Sounds (Terraria) - Sound Effect for editing 2_Schneider.MP3"
+dest_files=["res://.godot/imported/All Sword SwingUse Sounds (Terraria) - Sound Effect for editing 2_Schneider.MP3-5e372eaf71b64bdeb1780d6d985c4749.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

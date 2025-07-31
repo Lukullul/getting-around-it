@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		offset = 400
 	else:
 		offset = -400
-	global_position += Vector2(offset, 0)
+	global_position += Vector2(offset, -100)
 	animated_sprite_2d.flip_h = flipped
 
 

@@ -16,6 +16,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position.x += speed * direction * delta
 	animated_sprite_2d.flip_h = direction < 0
+	
 
 
 func _on_body_entered(body: Node2D) -> void:
