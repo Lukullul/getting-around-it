@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://u42jm4l2go31"]
+
+[ext_resource type="PackedScene" uid="uid://de6osmjxonvlb" path="res://scenes/tiles/blank.tscn" id="1_e8wn4"]
+[ext_resource type="Texture2D" uid="uid://dx5eqd82vpqo1" path="res://assets/tile_sheet_128px_by_128px.png" id="2_os2ub"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sklrq"]
+atlas = ExtResource("2_os2ub")
+region = Rect2(256, 0, 128, 128)
+
+[node name="StoneRight" instance=ExtResource("1_e8wn4")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = SubResource("AtlasTexture_sklrq")
