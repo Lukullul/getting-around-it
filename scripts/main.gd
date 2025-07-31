@@ -2,8 +2,13 @@ extends Node2D
 
 @export var rotation_velocity : float = 0.1
 
+func _ready() -> void:
+	pass
+
 
 func _process(delta: float) -> void:
+	if (Input.is_anything_pressed()):
+		$Player/Camera2D/Opening.hide()
 	#_scroll_background()
 	pass
 	
