@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dkrnqsix11mfa"]
+[gd_scene load_steps=24 format=3 uid="uid://dkrnqsix11mfa"]
 
 [ext_resource type="Script" uid="uid://dosfy7e286ub7" path="res://scripts/dragon.gd" id="1_vfigm"]
 [ext_resource type="Texture2D" uid="uid://codegiivrvl60" path="res://assets/dragon/drache_rough_yellow-1.png" id="2_kr2gv"]
@@ -10,21 +10,19 @@
 [ext_resource type="Texture2D" uid="uid://cerr8f8ylfluq" path="res://assets/dragon/drache_rough_yellow-7.png" id="8_x3hxg"]
 [ext_resource type="Texture2D" uid="uid://6vdtifnl2bfl" path="res://assets/dragon/drache_rough_yellow-8.png" id="9_mqowv"]
 [ext_resource type="Texture2D" uid="uid://dk81ca1pyn0sn" path="res://assets/dragon/drache_rough_yellow-9.png" id="10_2yucp"]
+[ext_resource type="Texture2D" uid="uid://b54vrom6s1nc5" path="res://assets/dragon/Unbenanntes_Projekt-1.png" id="11_cufkr"]
+[ext_resource type="Texture2D" uid="uid://cy156qsambfst" path="res://assets/dragon/Unbenanntes_Projekt-2.png" id="12_aos4c"]
+[ext_resource type="Texture2D" uid="uid://2m40iyecbctx" path="res://assets/dragon/Unbenanntes_Projekt-3.png" id="13_55mtw"]
+[ext_resource type="Texture2D" uid="uid://b2n8tgagngpex" path="res://assets/dragon/Unbenanntes_Projekt-4.png" id="14_j3p4k"]
+[ext_resource type="Texture2D" uid="uid://ja38jd3wj1rr" path="res://assets/dragon/Unbenanntes_Projekt-5.png" id="15_30cs7"]
+[ext_resource type="Texture2D" uid="uid://bldogoj6npbep" path="res://assets/dragon/Unbenanntes_Projekt-6.png" id="16_bv2lu"]
+[ext_resource type="Texture2D" uid="uid://w7biuc4i0sp2" path="res://assets/dragon/Unbenanntes_Projekt-7.png" id="17_in5pl"]
+[ext_resource type="Texture2D" uid="uid://dmkot8ej4so73" path="res://assets/dragon/Unbenanntes_Projekt-8.png" id="18_bnfx5"]
+[ext_resource type="Texture2D" uid="uid://de6wa316xcvce" path="res://assets/dragon/Unbenanntes_Projekt-9.png" id="19_3njga"]
+[ext_resource type="Texture2D" uid="uid://ci1huugglo6sk" path="res://assets/dragon/Unbenanntes_Projekt-10.png" id="20_ok48c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8f1sh"]
 size = Vector2(312, 176)
-
-[sub_resource type="Animation" id="Animation_5q8uj"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_kr2gv"]
-resource_name = "shoot"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lmr38"]
-_data = {
-&"RESET": SubResource("Animation_5q8uj"),
-&"shoot": SubResource("Animation_kr2gv")
-}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pgi5k"]
 animations = [{
@@ -59,6 +57,41 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 13.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_cufkr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_aos4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_55mtw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_j3p4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_30cs7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_bv2lu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_in5pl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_bnfx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_3njga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_ok48c")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kr2gv"]
@@ -75,16 +108,10 @@ shape = SubResource("RectangleShape2D_8f1sh")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-47, 97)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_lmr38")
-}
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_pgi5k")
 autoplay = "default"
-frame_progress = 0.170148
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -100,6 +127,5 @@ shape = SubResource("RectangleShape2D_kr2gv")
 [node name="FlipTimer" type="Timer" parent="."]
 wait_time = 4.0
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="FlipTimer" to="." method="_on_flip_timer_timeout"]

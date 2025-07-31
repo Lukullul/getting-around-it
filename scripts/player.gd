@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -700.0
+const SPEED = 450.0
+const JUMP_VELOCITY = -800.0
 
 @onready var timer: Timer = $Timer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -11,7 +11,7 @@ var attacking := false
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * 1.2
 	
 	# Attacking
 	if Input.is_action_just_pressed("attack"):
