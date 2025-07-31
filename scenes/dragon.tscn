@@ -27,7 +27,7 @@ size = Vector2(312, 176)
 [sub_resource type="SpriteFrames" id="SpriteFrames_pgi5k"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("2_kr2gv")
 }, {
 "duration": 1.0,
@@ -56,7 +56,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 13.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -112,6 +112,7 @@ position = Vector2(-47, 97)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_pgi5k")
 autoplay = "default"
+frame_progress = 0.615606
 
 [node name="Timer" type="Timer" parent="."]
 

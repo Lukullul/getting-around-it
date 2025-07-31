@@ -97,7 +97,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ail"]
-size = Vector2(400.625, 237.5)
+size = Vector2(457.5, 172.5)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.4, 0.4)
@@ -113,14 +113,17 @@ metadata/_edit_group_ = true
 position = Vector2(40, 0)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_4flbx")
-animation = &"idle"
+animation = &"slash"
+frame = 2
+frame_progress = 1.0
 
 [node name="SwordAttackArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordAttackArea"]
-position = Vector2(34.6875, 13.75)
+position = Vector2(26.25, 11.25)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_i4ail")
 
 [node name="Timer" type="Timer" parent="."]
