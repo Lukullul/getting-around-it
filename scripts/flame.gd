@@ -24,7 +24,7 @@ func _on_body_entered(body: Node2D) -> void:
 	animated_sprite_2d.play("abprall")
 	hit.emit()
 	timer.start()
-
+	$DeathSound.playing = true
 
 func _on_timer_timeout() -> void:
 	get_tree().reload_current_scene()

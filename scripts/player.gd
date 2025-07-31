@@ -87,3 +87,7 @@ func _on_sword_attack_area_area_entered(area: Area2D) -> void:
 		elif facing == -1 and area.direction == 1:
 			area.direction *= -3
 		$ParrySound.playing = true
+		area.collision_mask = 0
+		await get_tree().create_timer(0.2).timeout
+		area.collision_mask = 2
+		
