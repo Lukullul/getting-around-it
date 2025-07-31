@@ -1,5 +1,5 @@
 extends StaticBody2D
-class_name Stone
+class_name Blank
 
 @export var down : bool = false
 

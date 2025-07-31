@@ -20,31 +20,31 @@ func _scroll_background():
 	# $Sky/Pivot.position.y = $Player.position.y - 800
 	# $Sun/Sprite2D.position.y = $Player.position.y - viewport_size.y / 2
 
-"""
-AREA center
-"""
-
-func _on_toggle_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	area.show()
-
-
-func _on_toggle_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	area.hide()
-
-
-"""
-AREA mirror
-"""
-
-func _on_mirrow_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	var start_vector = area.position - Vector2(2 * Global.block_size, 0)
-	print(area)
-	if(area is Platform):
-		var sprite = MirrorSprite.new(start_vector, area.get_node("BackgroundTile"))
-		add_child(sprite)
-
-func _on_mirrow_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	pass # Replace with function body.
+#"""
+#AREA center
+#"""
+#
+#func _on_toggle_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	#area.show()
+#
+#
+#func _on_toggle_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	#area.hide()
+#
+#
+#"""
+#AREA mirror
+#"""
+#
+#func _on_mirrow_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	#var start_vector = area.position - Vector2(2 * Global.block_size, 0)
+	#print(area)
+	#if(area is Platform):
+		#var sprite = MirrorSprite.new(start_vector, area.get_node("BackgroundTile"))
+		#add_child(sprite)
+#
+#func _on_mirrow_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	#pass # Replace with function body.
 
 
 """
