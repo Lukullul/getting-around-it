@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://beq45rcnitrlm" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://dml3wini70m14" path="res://scenes/background.tscn" id="4_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://c7fdxg3o5uo2u" path="res://scenes/level.tscn" id="9_trceg"]
+[ext_resource type="PackedScene" uid="uid://2xmpuegkjl0j" path="res://scenes/level.tscn" id="9_trceg"]
 [ext_resource type="PackedScene" uid="uid://d0b60mijqawqy" path="res://scenes/player.tscn" id="13_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://byjbfcfesvar1" path="res://scenes/killzone.tscn" id="14_vxglm"]
 [ext_resource type="PackedScene" uid="uid://dkrnqsix11mfa" path="res://scenes/dragon.tscn" id="15_jbj1t"]
@@ -19,6 +19,7 @@ script = ExtResource("1_a8y0u")
 
 [node name="Player" parent="." instance=ExtResource("13_2wyq8")]
 position = Vector2(672, 512)
+fly = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-80, -0.00012207)

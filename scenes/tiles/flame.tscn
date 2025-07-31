@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bavf5h6oiha8h"]
+[gd_scene load_steps=3 format=3 uid="uid://bavf5h6oiha8h"]
 
 [ext_resource type="PackedScene" uid="uid://de6osmjxonvlb" path="res://scenes/tiles/blank.tscn" id="1_4p31g"]
+[ext_resource type="Texture2D" uid="uid://lbjdhr7mgtdw" path="res://assets/fireball/Feuerball1.png" id="2_x0n2q"]
 
 [node name="Flame" instance=ExtResource("1_4p31g")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_x0n2q")

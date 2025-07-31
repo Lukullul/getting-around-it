@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://df3h2m4m1popa"]
+
+[ext_resource type="PackedScene" uid="uid://dljl8jpamdtsx" path="res://scenes/tiles/slap.tscn" id="1_3xjn8"]
+[ext_resource type="Texture2D" uid="uid://dx5eqd82vpqo1" path="res://assets/tile_sheet_128px_by_128px.png" id="2_4ivdp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chso3"]
+atlas = ExtResource("2_4ivdp")
+region = Rect2(640, 128, 64, 64)
+
+[node name="Slap5" instance=ExtResource("1_3xjn8")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = SubResource("AtlasTexture_chso3")

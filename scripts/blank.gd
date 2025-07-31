@@ -1,8 +1,12 @@
 extends StaticBody2D
 class_name Stone
 
+@export var down : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if down:
+		position = Vector2(0, 32)
 	hide()
 
 func _process(delta: float) -> void:

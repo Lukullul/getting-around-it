@@ -15,8 +15,8 @@ func _physics_process(delta: float) -> void:
 		_handle_flight(delta)
 	if not fly:
 		_handle_movement(delta)
-		
-	# Attacking
+
+	# Animations
 	if Input.is_action_just_pressed("attack"):
 		attacking = true
 		if is_on_floor():
@@ -24,8 +24,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			animated_sprite.play("slash")
 		timer.start()
-	
-	# Animations
+
 	if not attacking:
 		if is_on_floor():
 			if velocity.x == 0:
@@ -37,43 +36,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-"""
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	
-	# Attacking
-	if Input.is_action_just_pressed("attack"):
-		attacking = true
-		animated_sprite.play("slash")
-		timer.start()
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-		animated_sprite.flip_h = velocity.x < 0
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	# Animations
-	if not attacking:
-		if is_on_floor():
-			if velocity.x == 0:
-				animated_sprite.play("idle")
-			else:
-				animated_sprite.play("run")
-		else:
-			animated_sprite.play("jump")
-
-	move_and_slide()
-"""
 func _handle_movement(delta):
 	# Add the gravity.
 	if not is_on_floor():
