@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=4 uid="uid://c7fdxg3o5uo2u"]
+
+[ext_resource type="PackedScene" uid="uid://de6osmjxonvlb" path="res://scenes/tiles/blank.tscn" id="1_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://ddgkt32nvynhr" path="res://scenes/tiles/stone.tscn" id="2_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://gdlxfbrimas8" path="res://scenes/tiles/wood.tscn" id="3_2r41h"]
+[ext_resource type="PackedScene" uid="uid://bavf5h6oiha8h" path="res://scenes/tiles/flame.tscn" id="4_klq6b"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_qmy6f"]
+resource_name = "Tiles"
+scenes/1/scene = ExtResource("1_mx8sn")
+scenes/2/scene = ExtResource("2_ppgk2")
+scenes/3/scene = ExtResource("3_2r41h")
+scenes/4/scene = ExtResource("4_klq6b")
+
+[sub_resource type="TileSet" id="TileSet_mwfav"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetScenesCollectionSource_qmy6f")
+
+[node name="Level" type="TileMapLayer"]
+tile_map_data = PackedByteArray("AABSAB0AAAAAAAAAAQAIAAsAAAAAAAAAAgAJAAwAAAAAAAAAAgAKAAwAAAAAAAAAAgALAAwAAAAAAAAAAgAMAAwAAAAAAAAAAgAOAAsAAAAAAAAAAgAPAAsAAAAAAAAAAgANAAwAAAAAAAAAAgAQAAoAAAAAAAAAAgARAAkAAAAAAAAAAgAUAAcAAAAAAAAAAgASAAgAAAAAAAAAAgAWAAYAAAAAAAAAAgATAAgAAAAAAAAAAgAEAAoAAAAAAAAAAgADAAoAAAAAAAAAAgACAAkAAAAAAAAAAgAHAAsAAAAAAAAAAgAGAAsAAAAAAAAAAgAFAAsAAAAAAAAAAgABAAkAAAAAAAAAAgAYAAQAAAAAAAAAAgAZAAMAAAAAAAAAAgAaAAIAAAAAAAAAAgAbAAIAAAAAAAAAAgAcAAEAAAAAAAAAAgAdAAEAAAAAAAAAAgAeAAAAAAAAAAAAAgAfAAAAAAAAAAAAAgAgAP//AAAAAAAAAgAlAPz/AAAAAAAAAgAmAPz/AAAAAAAAAgAnAPv/AAAAAAAAAgAoAPr/AAAAAAAAAgAiAPf/AAAAAAAAAgAhAPf/AAAAAAAAAgAgAPf/AAAAAAAAAgAfAPb/AAAAAAAAAgAeAPb/AAAAAAAAAgAdAPb/AAAAAAAAAgAcAPb/AAAAAAAAAgAbAPX/AAAAAAAAAgAaAPX/AAAAAAAAAgAXAPT/AAAAAAAAAgAWAPT/AAAAAAAAAgAVAPT/AAAAAAAAAgAUAPP/AAAAAAAAAgATAPP/AAAAAAAAAgASAPP/AAAAAAAAAgANAPH/AAAAAAAAAgAMAPD/AAAAAAAAAgAIAO3/AAAAAAAAAgAHAO3/AAAAAAAAAgAGAOz/AAAAAAAAAgAFAOz/AAAAAAAAAgAEAOv/AAAAAAAAAgADAOv/AAAAAAAAAgACAOr/AAAAAAAAAgAAAOn/AAAAAAAAAgD//+j/AAAAAAAAAgD+/+j/AAAAAAAAAgD6/+X/AAAAAAAAAgD3/+T/AAAAAAAAAgDz/+L/AAAAAAAAAgDv/+D/AAAAAAAAAgD0/97/AAAAAAAAAgD5/9z/AAAAAAAAAgD+/9r/AAAAAAAAAgADANn/AAAAAAAAAgAJANj/AAAAAAAAAgAQANf/AAAAAAAAAgAYANb/AAAAAAAAAgAgANX/AAAAAAAAAgAoANP/AAAAAAAAAgAvAND/AAAAAAAAAgAnAM7/AAAAAAAAAgD9/+f/AAAAAAAAAgAjAMz/AAAAAAAAAgAeAMv/AAAAAAAAAgAZAMr/AAAAAAAAAgA=")
+tile_set = SubResource("TileSet_mwfav")
+metadata/_edit_lock_ = true
