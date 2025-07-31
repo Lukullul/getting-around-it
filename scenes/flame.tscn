@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d2qqrtvdke7om"]
+[gd_scene load_steps=23 format=3 uid="uid://d2qqrtvdke7om"]
 
 [ext_resource type="Script" uid="uid://7iyij7q7q2na" path="res://scripts/flame.gd" id="1_ktous"]
 [ext_resource type="Texture2D" uid="uid://dufbltoog1wu5" path="res://assets/fireball/Feuerball_abprallend7.png" id="2_b2516"]
@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://bv3aea7tyox5g" path="res://assets/fireball/Feuerball8.png" id="9_jcynh"]
 [ext_resource type="Texture2D" uid="uid://8g824p434te2" path="res://assets/fireball/Feuerball_abprallend14.png" id="9_mbngx"]
 [ext_resource type="Texture2D" uid="uid://drlq0b8lxedwv" path="res://assets/fireball/Feuerball_abprallend15.png" id="10_li6j2"]
+[ext_resource type="AudioStream" uid="uid://c1o7n6tm2gbq4" path="res://assets/sounds/Blowing_fire.mp3" id="19_4uqlk"]
+[ext_resource type="AudioStream" uid="uid://bxtt4n0fyk4gi" path="res://assets/sounds/taco-bell-bong-sfx_u5kuUya.mp3" id="20_a0fhk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1iyp"]
 size = Vector2(13.75, 9.5)
@@ -110,7 +112,11 @@ wait_time = 0.7
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_4uqlk")
 autoplay = true
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_a0fhk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

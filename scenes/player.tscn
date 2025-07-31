@@ -122,7 +122,6 @@ fly = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(35, 47.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_sh265")
 metadata/_edit_group_ = true
 
@@ -137,13 +136,11 @@ wait_time = 0.5
 one_shot = true
 
 [node name="SwordAttackArea" type="Area2D" parent="."]
-scale = Vector2(1, 1)
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordAttackArea"]
 position = Vector2(37.5, 41.25)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_i4ail")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -151,6 +148,10 @@ stream = ExtResource("21_i4ail")
 
 [node name="ParrySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_a38lo")
+
+[node name="IFrameTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="SwordAttackArea" to="." method="_on_sword_attack_area_area_entered"]
