@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	print("player hit")
+	animated_sprite_2d.play("abprall")
 	hit.emit()
 	timer.start()
 

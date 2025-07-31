@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ckll30coomscy"]
+[gd_scene load_steps=22 format=4 uid="uid://ckll30coomscy"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://3p7lcd1g0vy" path="res://scenes/background/background_tile.tscn" id="2_jkv2x"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://d0b60mijqawqy" path="res://scenes/player.tscn" id="13_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://byjbfcfesvar1" path="res://scenes/killzone.tscn" id="14_vxglm"]
 [ext_resource type="PackedScene" uid="uid://dkrnqsix11mfa" path="res://scenes/dragon.tscn" id="15_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://bwv0gnvomlqxs" path="res://assets/stare.jpg" id="16_jbj1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(192, 704)
@@ -134,6 +135,11 @@ shape = SubResource("WorldBoundaryShape2D_3p2gp")
 
 [node name="Dragon" parent="." instance=ExtResource("15_jbj1t")]
 position = Vector2(256, 128)
+
+[node name="Stare" type="Sprite2D" parent="."]
+position = Vector2(-328, 480)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("16_jbj1t")
 
 [connection signal="area_shape_entered" from="Tower/AreaToggle" to="." method="_on_toggle_area_shape_entered"]
 [connection signal="area_shape_exited" from="Tower/AreaToggle" to="." method="_on_toggle_area_shape_exited"]
